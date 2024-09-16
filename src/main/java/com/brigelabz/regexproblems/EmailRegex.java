@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class EmailRegex {
 
-    private static final String EMAIL_REGEX = "^[a-z]{3}\\.?[a-z]*@[a-z]{10}\\.[a-z]{2}.*$";
+    private static final String EMAIL_REGEX = "^[a-z]{3}([_+\\-.][a-z]+)?@[a-z]{10}\\.[a-z]{2}.*$";
 
     public boolean isValidEmail(String email) {
         return Pattern.matches(EMAIL_REGEX, email);
@@ -20,7 +20,13 @@ public class EmailRegex {
 
     public static void main(String[] args) {
         EmailRegex regex = new EmailRegex();
-        String email = "abc.xyz@bridgelabz.co.in";
-        regex.validateEmail(email);
+        String email1 = "abc.xyz@bridgelabz.co.in";
+        String email2= "abc+xyz@bridgelabz.co.in";
+        String email3 = "abc-xyz@bridgelabz.co.in";
+        String email4 = "abc#xyz@bridgelabz.co.in"; //Invalid "#" not allowed
+        regex.validateEmail(email1);
+        regex.validateEmail(email2);
+        regex.validateEmail(email3);
+        regex.validateEmail(email4);
     }
 }
